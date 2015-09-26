@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="markdownItDemo" ng-csp ng-strict-di>
+<head>
+  <meta charset="UTF-8">
+  <title>MarkdownIt Demo Page</title>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-sanitize.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/markdown-it/4.4.0/markdown-it.min.js"></script>
+  <script src="js/ng-markdownit.min.js"></script>
+  <script>
+    angular.module('markdownItDemo', ['mdMarkdownIt']);
+  </script>
+</head>
+<body>
+
+  <form>
+    <label for="markdown-input"></label>
+    <textarea id="markdown-input" ng-model="markdown" ng-model-options="{debounce: 125}" rows="12" cols="80" placeholder="Type some markdown"></textarea>
+    <span class="help">Type some markdown and see the results.</span>
+  </form>
+
+  <div markdown-it="markdown"></div>
+  
+  <div markdown-it ng-include="'README.md'"></div>
+
+</body>
+</html>

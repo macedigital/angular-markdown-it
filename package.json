@@ -24,8 +24,9 @@
     "ng-annotate": "^1.0.2"
   },
   "scripts": {
-    "pretest": "npm install",
-    "test": "node_modules/.bin/karma start karma.conf.js --single-run"
+    "test": "node_modules/.bin/karma start karma.conf.js --single-run --reporters progress",
+    "test-cov": "node_modules/.bin/karma start karma.conf.js --single-run --reporters coverage",
+    "test-travis": "node_modules/.bin/karma start karma.conf.js --single-run --browsers Firefox --reporters coverage"
   },
   "keywords": [
     "angular",

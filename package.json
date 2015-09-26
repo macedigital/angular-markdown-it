@@ -1,0 +1,38 @@
+{
+  "name": "angular-markdown-it",
+  "version": "0.1.0",
+  "description": "Angular directive for rendering markdown with markdown-it.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/macedigital/angular-markdown-it"
+  },
+  "bugs": "https://github.com/macedigital/angular-markdown-it/issues",
+  "devDependencies": {
+    "angular": "~1.4",
+    "angular-mocks": "~1.4",
+    "angular-sanitize": "~1.4",
+    "bower": "^1.3.1",
+    "conventional-changelog": "~0.4",
+    "jasmine-core": "^2.3.4",
+    "karma": "~0.12",
+    "karma-chrome-launcher": "^0.1.12",
+    "karma-coverage": "^0.5.2",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-jasmine": "^0.3.5",
+    "karma-junit-reporter": "^0.2.2",
+    "markdown-it": "^4.4",
+    "ng-annotate": "^1.0.2"
+  },
+  "scripts": {
+    "pretest": "npm install",
+    "test": "node_modules/.bin/karma start karma.conf.js --single-run"
+  },
+  "keywords": [
+    "angular",
+    "directive",
+    "markdown"
+  ],
+  "author": "Matthias Adler",
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}

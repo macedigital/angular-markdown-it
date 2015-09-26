@@ -1,0 +1,8 @@
+{
+  "preset": "google",
+  "maximumLineLength": 120,
+  "excludeFiles": [
+    "node_modules/**",
+    "bower_components/**"
+  ]
+}

@@ -29,5 +29,3 @@ bower_components
 
 # build and ide
 .idea
-dist
-build

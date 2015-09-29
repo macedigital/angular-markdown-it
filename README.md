@@ -33,7 +33,7 @@ You can also bind the markdown input to a scope variable:
 Or, you include a markdown file:
 
 ````html
-<div markdown-it ng-include="README.md"></div>
+<div markdown-it ng-include="'README.md'"></div>
 <!-- Uses content from README.md -->
 ````
 

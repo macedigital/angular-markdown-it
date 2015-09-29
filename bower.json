@@ -32,6 +32,7 @@
     "node_modules",
     "test",
     "karma.conf.js",
+    "index.js",
     "package.json"
   ]
 }

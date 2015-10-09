@@ -1,5 +1,5 @@
 /**global window*/
-;(function(window, angular, undefined) {
+;(function(window, angular) {
   'use strict';
 
   function markdownItProvider() {
@@ -27,13 +27,15 @@
 
   function markdownItDirective($sanitize, markdownIt) {
 
+    var attribute = 'markdownIt';
+
     var render = function(value) {
       return value ? $sanitize(markdownIt.render(value)) : '';
     };
 
     var link = function(scope, element, attrs) {
-      if (attrs.markdownIt) {
-        scope.$watch('markdownIt', function(value) {
+      if (attrs[attribute]) {
+        scope.$watch(attribute, function(value) {
           element.html(render(value));
         });
       } else {

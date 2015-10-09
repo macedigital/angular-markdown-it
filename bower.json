@@ -10,9 +10,9 @@
     "url": "git://github.com/macedigital/angular-markdown-it.git"
   },
   "dependencies": {
-    "angular": "^1.4.6",
-    "angular-sanitize": "^1.4.6",
-    "markdown-it": "^4.4"
+    "angular": "~1.4",
+    "angular-sanitize": "~1.4",
+    "markdown-it": "~5.0"
   },
   "moduleType": [
     "globals"

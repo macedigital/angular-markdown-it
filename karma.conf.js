@@ -67,6 +67,6 @@ module.exports = function(config) {
 
   if (process.env.TRAVIS) {
     // This speeds up the capturing a bit, as browsers don't even try to use websocket.
-    config.transports = ['xhr-polling'];
+    config.transports = ['polling'];
   }
 };

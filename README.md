@@ -1,4 +1,5 @@
 ![Bower version][bower-image]
+![NPM version][npm-image]
 [![Build Status][ci-image]][ci-url]
 [![Code Coverage status][codecov-image]][codecov-url]
 
@@ -6,15 +7,51 @@
 
 > [Angular 1.x](https://angularjs.org) directive for rendering markdown with [markdown-it](https://github.com/markdown-it/markdown-it). This directive is based on @btford's [markdown directive](https://github.com/btford/angular-markdown-directive).
 
-## Usage
+## Getting started
 
-The easiest way to use the `mdMarkdownIt` directive is to install it with bower:
+### Quick start
 
-`bower install angular-markdown-it`
+Pick one of these options:
 
-You'll need to load `angular`, `angular-sanitize`, and `markdown-it` which should be located in your `bower_components` folder.
+- [Download latest release](https://github.com/macedigital/angular-markdown-it/archive/master.zip)
+- Clone the repository `git clone https://github.com/macedigital/angular-markdown-it.git`
+- Install with [NPM](https://npmjs.org/) `npm install angular-markdown-it`
+- Install with [Bower](http://bower.io/) `bower install angular-markdown-it`
 
-Then, you can include the `markdown-it` directive in your templates:
+### Installation
+
+You'll need to load `angular`, `angular-sanitize`, and `markdown-it` in your markup like in the example below (assuming you installed via `npm`). 
+
+````html
+<html ng-app="myapp">
+  <head>
+    <!-- ... -->
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="node_modules/markdown-it/dist/markdown-it.min.js"></script>
+    <script src="node_modules/angular-markdown-it/dist/ng-markdownit.min.js"></script>
+    <!-- ... -->
+  </head>
+  <body>
+    <!-- ... -->
+  </body>
+</html>
+````
+
+If you like *browserify*, you could include this snippet into your `entry.js` file instead.
+ 
+````js
+require('angular');
+require('angular-sanitize');
+global.markdownit = require('markdown-it');
+require('angular-markdown-it');
+
+angular.module('myapp', ['mdMarkdownIt']);
+````
+
+### Usage
+
+Include the `markdown-it` directive in your templates:
 
 ````html
 <markdown-it>
@@ -37,12 +74,12 @@ Or, you include a markdown file:
 <!-- Uses content from README.md -->
 ````
 
-## Configuration
+### Configuration
 
 You can pass in custom options to the `markdownItConverterProvider` by choosing a preset, and/or custom settings.
 
 ````js
-angular.module('myModule', ['ngSanitize', 'mdMarkdownIt'])
+angular.module('myapp', ['ngSanitize', 'mdMarkdownIt'])
   .config(['markdownItConverterProvider', function(markdownItConverter) {
       markdownItConverter.config('commonmark', {
         breaks: true,
@@ -59,6 +96,7 @@ Support for adding plugins is planned, but not yet supported.
 
 MIT
 
+[npm-image]:https://img.shields.io/npm/v/angular-markdown-it.svg?style=flat
 [bower-image]:https://img.shields.io/bower/v/angular-markdown-it.svg?style=flat
 [ci-image]: https://travis-ci.org/macedigital/angular-markdown-it.svg?style=flat
 [ci-url]: https://travis-ci.org/macedigital/angular-markdown-it

@@ -1,10 +1,4 @@
-(function(factory) {
-  if (typeof module === 'object' && typeof module.exports === 'object') {
-    module.exports = factory(require('angular'), require('markdown-it'));
-  } else {
-    factory(angular, markdownit);
-  }
-})(function(angular, markdownit) {
+(function(window, angular, markdownit) {
   'use strict';
   function markdownItProvider() {
     var options = {};
@@ -51,4 +45,4 @@
   angular.module('mdMarkdownIt', ['ngSanitize'])
     .provider('markdownItConverter', markdownItProvider)
     .directive('markdownIt', ['$sanitize', 'markdownItConverter', markdownItDirective]);
-});
+})(window, window.angular, window.markdownit);

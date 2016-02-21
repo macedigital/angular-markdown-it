@@ -1,7 +1,7 @@
 {
   "name": "angular-markdown-it",
   "description": "Angular 1.x directive for rendering markdown with markdown-it",
-  "main": "dist/ng-markdownit.js",
+  "main": "./dist/ng-markdownit.js",
   "authors": [
     "Matthias Adler <macedigital@gmail.com>"
   ],

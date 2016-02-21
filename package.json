@@ -8,17 +8,22 @@
   },
   "main": "index.js",
   "bugs": "https://github.com/macedigital/angular-markdown-it/issues",
+  "peerDependencies": {
+    "angular": "1.x",
+    "angular-sanitize": "1.x",
+    "markdown-it": ">= 6.x"
+  },
   "devDependencies": {
     "angular": "^1.4",
-    "angular-mocks": "^1.4",
     "angular-sanitize": "^1.4",
+    "markdown-it": "^6.0",
+    "angular-mocks": "^1.4",
     "jasmine-core": "^2.4",
     "karma": "^0.13",
     "karma-chrome-launcher": "^0.2",
     "karma-coverage": "^0.5.2",
     "karma-firefox-launcher": "^0.1",
     "karma-jasmine": "^0.3",
-    "markdown-it": "^5.0",
     "uglifyjs": "^2.4"
   },
   "scripts": {

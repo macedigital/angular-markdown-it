@@ -12,7 +12,7 @@
   "dependencies": {
     "angular": "^1.4",
     "angular-sanitize": "^1.4",
-    "markdown-it": "^5.0"
+    "markdown-it": "^6.0"
   },
   "moduleType": [
     "globals"

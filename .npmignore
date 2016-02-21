@@ -1,8 +1,8 @@
 bower_components
 coverage
+lib
 node_modules
 test
 .bowerrc
-bower.json
 karma.conf.js
 Makefile

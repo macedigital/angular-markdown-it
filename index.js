@@ -1,4 +1,4 @@
-require('angular');
+var angular = require('angular');
 require('angular-sanitize');
-require('markdown-it');
-module.exports = require('./lib/markdownit-directive.js');
+require('./lib/markdownit-directive.js');
+module.exports = 'mdMarkdownIt';

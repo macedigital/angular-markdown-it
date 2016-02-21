@@ -2,7 +2,8 @@
   "preset": "google",
   "maximumLineLength": 120,
   "excludeFiles": [
-    "node_modules/**",
-    "bower_components/**"
+    "**/*.min.js",
+    "bower_components/**",
+    "node_modules/**"
   ]
 }

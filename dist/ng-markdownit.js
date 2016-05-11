@@ -1,4 +1,4 @@
-(function(window, angular, markdownit) {
+(function(window, angular) {
   'use strict';
   function markdownItProvider() {
     var options = {};
@@ -14,9 +14,14 @@
           options = preset;
         }
       },
-      $get: function() {
+      $get: [ '$log', function($log) {
+        var markdownit = window.markdownit;
+        if (angular.isUndefined(markdownit)) {
+          $log.error('angular-markdown-it: markdown-it not loaded.');
+          return;
+        }
         return markdownit(presetName, options);
-      }
+      } ]
     };
   }
   function markdownItDirective($sanitize, markdownIt) {
@@ -42,7 +47,5 @@
       link: link
     };
   }
-  angular.module('mdMarkdownIt', ['ngSanitize'])
-    .provider('markdownItConverter', markdownItProvider)
-    .directive('markdownIt', ['$sanitize', 'markdownItConverter', markdownItDirective]);
-})(window, window.angular, window.markdownit);
+  angular.module('mdMarkdownIt', [ 'ngSanitize' ]).provider('markdownItConverter', markdownItProvider).directive('markdownIt', [ '$sanitize', 'markdownItConverter', markdownItDirective ]);
+})(window, window.angular);

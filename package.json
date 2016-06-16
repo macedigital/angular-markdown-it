@@ -20,10 +20,10 @@
     "angular-mocks": "^1.4",
     "jasmine-core": "^2.4",
     "karma": "^0.13",
-    "karma-chrome-launcher": "^0.2",
-    "karma-coverage": "^0.5.2",
-    "karma-firefox-launcher": "^0.1",
-    "karma-jasmine": "^0.3",
+    "karma-chrome-launcher": "^1.0",
+    "karma-coverage": "^1.0",
+    "karma-firefox-launcher": "^1.0",
+    "karma-jasmine": "^1.0",
     "uglifyjs": "^2.4"
   },
   "scripts": {

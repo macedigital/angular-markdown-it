@@ -57,4 +57,36 @@ describe('angular-markdown-it:directive', function() {
     expect(elt.html()).toContain('<p>window.hacked = true;</p>');
     expect(window.hacked).toBeUndefined();
   });
+
+});
+
+describe('directive with custom plugin object', function() {
+
+  var $compile;
+  var $rootScope;
+
+  angular.module('emojiDirectiveTest', ['mdMarkdownIt']).config([
+    'markdownItConverterProvider', function(markdownItConverter) {
+      markdownItConverter.use(markdownitEmoji);
+    }
+  ]);
+
+  beforeEach(module('emojiDirectiveTest'));
+  beforeEach(inject(function(_$compile_, _$rootScope_) {
+    $compile = _$compile_;
+    $rootScope = _$rootScope_;
+  }));
+
+  it('should emojify an element', function() {
+    var elt = angular.element('<markdown-it>:)</markdown-it>');
+    $compile(elt)($rootScope);
+    expect(elt.html()).toContain('<p>😃</p>');
+  });
+
+  it('should emojify an attribute', function() {
+    var elt = angular.element('<div markdown-it>:)</div>');
+    $compile(elt)($rootScope);
+    expect(elt.html()).toContain('<p>😃</p>');
+  });
+
 });

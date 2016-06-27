@@ -18,6 +18,8 @@ module.exports = function(config) {
       'node_modules/angular-sanitize/angular-sanitize.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'node_modules/markdown-it/dist/markdown-it.js',
+      'node_modules/markdown-it-emoji/dist/markdown-it-emoji-light.min.js',
+      'node_modules/markdown-it-sub/dist/markdown-it-sub.min.js',
       'lib/*.js',
       'test/**/*Spec.js'
     ],

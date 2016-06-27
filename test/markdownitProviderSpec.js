@@ -1,10 +1,53 @@
-/*global describe,it,should,beforeEach,module,expect*/
+/*global describe,it,should,beforeAll,afterAll,beforeEach,afterEach,module,expect*/
 
 describe('angular-markdown-it:provider', function() {
   'use strict';
 
   var $compile;
   var $rootScope;
+
+  describe('with unavailable markdownit', function() {
+
+    var backup;
+    var $log;
+
+    angular.module('undefinedMarkdownIt', ['mdMarkdownIt']);
+
+    beforeAll(function() {
+      backup = window.markdownit;
+      window.markdownit = undefined;
+    });
+
+    afterAll(function() {
+      window.markdownit = backup;
+      backup = undefined;
+    });
+
+    beforeEach(module('undefinedMarkdownIt'));
+    beforeEach(inject(function(_$compile_, _$rootScope_, _$log_) {
+      $compile = _$compile_;
+      $rootScope = _$rootScope_;
+      $log = _$log_;
+    }));
+
+    it('should log error and throw exception', function() {
+
+      expect(window.markdownit).toBeUndefined();
+      expect($log.error.logs.length).toEqual(0);
+
+      try {
+        var elt = angular.element('<markdown-it>fails due to missing library</markdown-it>');
+        $compile(elt)($rootScope);
+      } catch (e) {
+        expect(e.name).toBe('TypeError');
+      }
+
+      expect($log.error.logs.length).toEqual(1);
+      expect($log.error.logs[0].toString()).toContain('markdown-it library not loaded');
+
+    });
+
+  });
 
   describe('with invalid config', function() {
 
@@ -179,6 +222,65 @@ describe('angular-markdown-it:provider', function() {
       $rootScope.html = html;
       $rootScope.$apply();
       expect(elt.html()).toBe(html);
+    });
+
+  });
+
+  describe('markdownItConverter with plugins', function() {
+
+    var markdownItConverter;
+
+    angular.module('pluginModule', ['mdMarkdownIt']);
+
+    beforeEach(module('pluginModule'));
+    beforeEach(inject(function(_markdownItConverter_) {
+      markdownItConverter = _markdownItConverter_;
+    }));
+
+    afterEach(function() {
+      markdownItConverter = null;
+    });
+
+    it('should render with emoji plugin', function() {
+
+      expect(markdownItConverter.renderer.rules.emoji).toBeUndefined();
+      expect(markdownItConverter.renderInline(':(')).toEqual(':(');
+
+      markdownItConverter.use(markdownitEmoji);
+
+      expect(markdownItConverter.renderer.rules.emoji).toBeTruthy();
+      expect(markdownItConverter.renderInline(':)')).toEqual('😃');
+
+    });
+
+    it('should use custom plugin options', function() {
+      markdownItConverter.use(markdownitEmoji, {
+        'smile': [':)', ':-)'],
+        'laughing': ':D'
+      });
+
+      expect(markdownItConverter.renderInline(':-)')).toEqual('😃');
+      expect(markdownItConverter.renderInline(':D')).toEqual('😄');
+      expect(markdownItConverter.renderInline(':@')).toEqual('😡');
+
+    });
+
+    it('should allow monkey-patching', function() {
+
+      markdownItConverter.use(markdownitEmoji);
+      markdownItConverter.renderer.rules.emoji = function(token, idx) {
+        return '<span class="emoji emoji_' + token[idx].markup + '"></span>';
+      };
+      expect(markdownItConverter.renderInline(':)')).toEqual('<span class="emoji emoji_smiley"></span>');
+
+    });
+
+    it('should be able to add plugins (fluent-style)', function() {
+
+      expect(markdownItConverter.renderInline(':-P H~2~0')).toEqual(':-P H~2~0');
+      markdownItConverter.use(markdownitSub).use(markdownitEmoji);
+      expect(markdownItConverter.renderInline(':-P H~2~0')).toEqual('😛 H<sub>2</sub>0');
+
     });
 
   });

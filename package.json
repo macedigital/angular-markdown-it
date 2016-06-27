@@ -15,15 +15,17 @@
   },
   "devDependencies": {
     "angular": "^1.4",
-    "angular-sanitize": "^1.4",
-    "markdown-it": "^6.0",
     "angular-mocks": "^1.4",
+    "angular-sanitize": "^1.4",
     "jasmine-core": "^2.4",
     "karma": "^0.13",
     "karma-chrome-launcher": "^1.0",
     "karma-coverage": "^1.0",
     "karma-firefox-launcher": "^1.0",
     "karma-jasmine": "^1.0",
+    "markdown-it": "^6.0",
+    "markdown-it-emoji": "^1.2.0",
+    "markdown-it-sub": "^1.0.0",
     "uglifyjs": "^2.4"
   },
   "scripts": {

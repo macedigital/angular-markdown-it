@@ -3,26 +3,36 @@
   function markdownItProvider() {
     var options = {};
     var presetName = 'default';
-    return {
-      config: function(preset, opts) {
-        if (angular.isString(preset) && angular.isObject(opts)) {
-          presetName = preset;
-          options = opts;
-        } else if (angular.isString(preset)) {
-          presetName = preset;
-        } else if (angular.isObject(preset)) {
-          options = preset;
-        }
-      },
-      $get: [ '$log', function($log) {
-        var markdownit = window.markdownit;
-        if (angular.isUndefined(markdownit)) {
-          $log.error('angular-markdown-it: markdown-it not loaded.');
-          return;
-        }
-        return markdownit(presetName, options);
-      } ]
+    var plugins = [];
+    function markdownItFactory(markdownIt) {
+      var md = markdownIt(presetName, options);
+      for (var i = 0; i < plugins.length; i += 1) {
+        md.use.apply(md, plugins[i]);
+      }
+      return md;
+    }
+    this.config = function configureOptions(preset, opts) {
+      if (angular.isString(preset) && angular.isObject(opts)) {
+        presetName = preset;
+        options = opts;
+      } else if (angular.isString(preset)) {
+        presetName = preset;
+      } else if (angular.isObject(preset)) {
+        options = preset;
+      }
     };
+    this.use = function addPlugin(pluginObject) {
+      var options = Array.prototype.slice.call(arguments);
+      plugins.push(options);
+      return this;
+    };
+    this.$get = [ '$log', function($log) {
+      var constructor = window.markdownit || markdownit;
+      if (angular.isFunction(constructor)) {
+        return markdownItFactory(constructor);
+      }
+      $log.error('angular-markdown-it: markdown-it library not loaded.');
+    } ];
   }
   function markdownItDirective($sanitize, markdownIt) {
     var attribute = 'markdownIt';

@@ -38,6 +38,8 @@ You'll need to load `angular`, `angular-sanitize`, and `markdown-it` in your mar
 </html>
 ````
 
+Since release 0.5 it is possible to lazy-load the `markdown-it` dependency. Just make sure it is available before a markdown-it directive is first called. 
+
 If you like *browserify*, you could include this snippet into your `entry.js` file instead.
  
 ````js
@@ -49,7 +51,7 @@ require('angular-markdown-it');
 angular.module('myapp', ['mdMarkdownIt']);
 ````
 
-### Usage
+## Usage
 
 Include the `markdown-it` directive in your templates:
 
@@ -74,9 +76,15 @@ Or, you include a markdown file:
 <!-- Uses content from README.md -->
 ````
 
-### Configuration
+## Configuration
 
-You can pass in custom options to the `markdownItConverterProvider` by choosing a preset, and/or custom settings.
+By default, nothing has to be configured. All markdown will be rendered similar to [GFM](https://help.github.com/categories/writing-on-github/), but without HTML, typographer & autolinker features.
+
+Nonetheless, there are two methods for changing behavior, which can be combined:
+
+### Changing options
+
+You can pass in custom options to the `markdownItConverterProvider` by choosing a preset, and/or custom settings calling the `config()` method.
 
 ````js
 angular.module('myapp', ['ngSanitize', 'mdMarkdownIt'])
@@ -88,9 +96,28 @@ angular.module('myapp', ['ngSanitize', 'mdMarkdownIt'])
   }])
 ````
 
+In above example, we'll use [CommonMark](http://commonmark.org/) mode, render line-breaks as `<br>` tags, and enable HTML tags in the source.
+
 See [markdown-it presets and options](https://github.com/markdown-it/markdown-it#init-with-presets-and-options) for all possible variations.
 
-Support for adding plugins is planned, but not yet supported.
+### Using plugins
+
+Adding plugins is supported by calling the `use()` method.
+
+Each plugin must be added individually, but you can use method-chaining to simplify the process. The signature of `use()` mimicks the way how you would add plugins to vanilla `markdown-it`.  
+
+````js
+angular.module('myapp', ['ngSanitize', 'mdMarkdownIt'])
+  .config(['markdownItConverterProvider', function(markdownItConverter) {
+      markdownItConverter
+        .use(plugin1)
+        .use(plugin2, opts, ...)
+        .use(plugin3)
+      ;
+  }])
+````
+
+There are many [markdown-it plugins](https://www.npmjs.org/browse/keyword/markdown-it-plugin) available.
 
 ## License
 

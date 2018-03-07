@@ -1,5 +1,7 @@
 ![Bower version][bower-image]
 ![NPM version][npm-image]
+![Dev Dependencies][david-dev]
+![Peer Dependencies][david-peer]
 [![Build Status][ci-image]][ci-url]
 [![Code Coverage status][codecov-image]][codecov-url]
 
@@ -22,7 +24,7 @@ Pick one of these options:
 
 ### Installation
 
-You'll need to load `angular`, `angular-sanitize`, and `markdown-it` in your markup like in the example below (assuming you installed via `npm`). 
+You'll need to load `angular`, `angular-sanitize`, and `markdown-it` in your markup like in the example below (assuming you installed via `npm`).
 
 ````html
 <html ng-app="myapp">
@@ -40,18 +42,18 @@ You'll need to load `angular`, `angular-sanitize`, and `markdown-it` in your mar
 </html>
 ````
 
-Since release 0.5 it is possible to lazy-load the `markdown-it` dependency. Just make sure it is available before a markdown-it directive is first called. 
+Since release 0.5 it is possible to lazy-load the `markdown-it` dependency. Just make sure it is available before a markdown-it directive is first called.
 
 If you like *browserify*, you could include this snippet into your `entry.js` file instead.
- 
-````js
+
+```js
 require('angular');
 require('angular-sanitize');
 global.markdownit = require('markdown-it');
 require('angular-markdown-it');
 
 angular.module('myapp', ['mdMarkdownIt']);
-````
+```
 
 ## Usage
 
@@ -129,5 +131,7 @@ MIT
 [bower-image]:https://img.shields.io/bower/v/angular-markdown-it.svg?style=flat
 [ci-image]: https://travis-ci.org/macedigital/angular-markdown-it.svg?style=flat
 [ci-url]: https://travis-ci.org/macedigital/angular-markdown-it
+[david-dev]:https://img.shields.io/david/dev/macedigital/angular-markdown-it.svg?style=flat
+[david-peer]:https://img.shields.io/david/peer/macedigital/angular-markdown-it.svg?style=flat
 [codecov-image]:https://img.shields.io/codecov/c/github/macedigital/angular-markdown-it.svg?style=flat
 [codecov-url]:https://codecov.io/github/macedigital/angular-markdown-it

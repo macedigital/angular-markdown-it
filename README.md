@@ -5,6 +5,8 @@
 
 # angular-markdown-it
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/macedigital/angular-markdown-it.svg)](https://greenkeeper.io/)
+
 > [Angular 1.x](https://angularjs.org) directive for rendering markdown with [markdown-it](https://github.com/markdown-it/markdown-it). This directive is based on @btford's [markdown directive](https://github.com/btford/angular-markdown-directive).
 
 ## Getting started
